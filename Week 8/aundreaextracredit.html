@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Math Game</title>
+  <script>
+    var correct = 0;
+    var wrong = 0;
+    var totalQuestions = 10;
+    var currentQuestion = 0;
+    var num1, num2, answer;
+
+    function startGame() {
+      correct = 0;
+      wrong = 0;
+      currentQuestion = 0;
+      document.getElementById("result").innerHTML = "";
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < totalQuestions) {
+        num1 = Math.floor(Math.random() * 10);
+        num2 = Math.floor(Math.random() * 10);
+        document.getElementById("question").innerHTML =
+          "Question " + (currentQuestion + 1) + ": What is " + num1 + " + " + num2 + "?";
+        document.getElementById("answer").value = "";
+        document.getElementById("answer").focus();
+      } else {
+        showResults();
+      }
+    }
+
+    function checkAnswer() {
+      var userAnswer = document.getElementById("answer").value;
+
+      if (userAnswer == "") {
+        alert("Please enter an answer.");
+        return;
+      }
+
+      if (parseInt(userAnswer) == num1 + num2) {
+        correct++;
+        alert("Correct!");
+      } else {
+        wrong++;
+        alert("Wrong! The answer was " + (num1 + num2));
+      }
+
+      currentQuestion++;
+      nextQuestion();
+    }
+
+    function showResults() {
+      var percent = Math.round((correct / totalQuestions) * 100);
+      document.getElementById("question").innerHTML = "Game Over!";
+      document.getElementById("result").innerHTML =
+        "You got " + correct + " correct and " + wrong + " wrong.<br>" +
+        "Your score: " + percent + "%";
+    }
+  </script>
+</head>
+
+<body style="background-color: beige; margin-left: 30px;">
+  <h1>Simple Math Game</h1>
+  <p id="question">Click "Start Game" to begin!</p>
+
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+  <button onclick="startGame()">Start Game</button>
+
+  <p id="result"></p>
+
+  <p>
+    <a href="index.html">Back to Homepage</a> |
+    <a href="contact.html">Contact Us</a>
+  </p>
+</body>
+</html>

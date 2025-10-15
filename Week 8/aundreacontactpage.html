@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name");
+      var email = document.getElementById("email");
+      var yes = document.getElementById("yes");
+      var no = document.getElementById("no");
+
+      // reset colors first
+      name.style.backgroundColor = "";
+      email.style.backgroundColor = "";
+
+      // check name
+      if (name.value == "") {
+        name.style.backgroundColor = "red";
+        name.focus();
+        return false;
+      }
+
+      // check email
+      if (email.value == "") {
+        email.style.backgroundColor = "red";
+        email.focus();
+        return false;
+      }
+
+      // check terms
+      if (!yes.checked) {
+        alert("Please accept the terms of the agreement.");
+        yes.focus();
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</head>
+
+<body style="background-color: beige;">
+  <div style="margin-left: 30px;">
+    <h1>Contact Us</h1>
+
+    <form onsubmit="return validateForm();">
+      <p>Name: <input type="text" id="name"></p>
+      <p>Email: <input type="email" id="email"></p>
+
+      <p>Do you accept the terms of the agreement?</p>
+      <input type="radio" id="yes" name="terms" value="yes"> Yes<br>
+      <input type="radio" id="no" name="terms" value="no"> No<br><br>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p><a href="index.html">Back to Homepage</a> | 
+       <a href="story.html">Go to Story Page</a></p>
+  </div>
+</body>
+</html>
