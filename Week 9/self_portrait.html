@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Portrait</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+</head>
+<body>
+<script>
+function setup() {
+  createCanvas(400, 400);
+  background(220);
+
+  // Hair (brown long straight)
+  fill(139, 69, 19); 
+  rect(100, 50, 200, 300, 100);
+
+  // Face (light skin tone)
+  fill(255, 224, 189);
+  ellipse(200, 200, 180, 220);
+
+  // Eyes
+  fill(255);
+  ellipse(170, 180, 40, 20);
+  ellipse(230, 180, 40, 20);
+  fill(0);
+  ellipse(170, 180, 15, 15);
+  ellipse(230, 180, 15, 15);
+
+  // Nose
+  fill(255, 204, 170);
+  triangle(200, 190, 190, 220, 210, 220);
+
+  // Mouth
+  fill(255, 105, 97);
+  arc(200, 240, 60, 30, 0, PI);
+
+  // Shirt (pink)
+  fill(255, 182, 193);
+  rect(130, 300, 140, 100);
+
+  // Gold jewelry (necklace)
+  stroke(218, 165, 32);
+  strokeWeight(3);
+  noFill();
+  arc(200, 260, 100, 50, 0, PI);
+
+  // Signature
+  noStroke();
+  fill(0);
+  textSize(16);
+  text("Aundrea Johnson", 10, 390);
+}
+</script>
+</body>
+</html>
