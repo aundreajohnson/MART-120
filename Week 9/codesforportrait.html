@@ -1,0 +1,74 @@
+<script>
+  function setup() {
+    createCanvas(500, 600);
+  }
+
+  function draw() {
+    background(200, 220, 255); // light blue background
+    textSize(24);
+    fill(0);
+    text("Self Portrait", 10, 30); // title
+
+    // face
+    fill(255, 224, 189); // light skin tone
+    circle(250, 200, 150);
+
+    // eyes (white oval with black pupil)
+    fill(255); // white
+    ellipse(225, 180, 30, 20); // left eye white
+    ellipse(275, 180, 30, 20); // right eye white
+    fill(0); // pupils
+    circle(225, 180, 10);
+    circle(275, 180, 10);
+
+    // nose (simple triangle)
+    fill(255, 204, 153);
+    triangle(245, 190, 255, 190, 250, 205);
+
+    // mouth (simple smile)
+    noFill();
+    stroke(0);
+    strokeWeight(2);
+    arc(250, 225, 50, 30, 0, PI); // smiling arc
+
+    // hair - long straight brown hair
+    noStroke();
+    fill(139, 69, 19);
+    rect(185, 130, 130, 120); // hair behind face
+    ellipse(250, 150, 160, 120); // top hair
+
+    // gold earrings
+    stroke(212, 175, 55);
+    strokeWeight(4);
+    point(200, 215);
+    point(300, 215);
+
+    // body (pink shirt)
+    noStroke();
+    fill(255, 182, 193);
+    rect(200, 275, 100, 150);
+
+    // arms
+    rect(150, 285, 50, 15);
+    rect(300, 285, 50, 15);
+
+    // neck
+    fill(255, 224, 189);
+    rect(235, 250, 30, 30);
+
+    // gold necklace (line)
+    stroke(212, 175, 55);
+    strokeWeight(2);
+    line(235, 275, 265, 275);
+
+    // triangle (to meet shape requirement)
+    noStroke();
+    fill(255);
+    triangle(230, 425, 250, 375, 270, 425);
+
+    // signature
+    fill(0);
+    textSize(20);
+    text("Aundrea Johnson", 300, 580);
+  }
+</script>
