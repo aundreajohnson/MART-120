@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script>
+      // Head (moves diagonally)
+      let headX = 250;
+      let headY = 200;
+      let headSize = 100;
+      let headGrow = true;
+      let headColor;
+      let headXSpeed = 2;
+      let headYSpeed = 1.5;
+
+      // Rectangle (moves left and right)
+      let rectX = 100;
+      let rectY = 400;
+      let rectSpeed = 3;
+      let rectColor;
+
+      // Circle (moves up and down)
+      let circleX = 400;
+      let circleY = 300;
+      let circleSpeed = 2;
+      let circleColor;
+
+      // Title text animation
+      let titleSize = 24;
+      let titleDirection = 1;
+      let titleCount = 0;
+
+      function setup() {
+        createCanvas(500, 600);
+        headColor = color(255, 200, 200);
+        rectColor = color(150, 200, 255);
+        circleColor = color(200, 255, 150);
+      }
+
+      function draw() {
+        background(220);
+
+        // --- TITLE (grows 5 times, shrinks 5 times, repeats)
+        fill(0);
+        textSize(titleSize);
+        text("Self Portrait", 10, 40);
+        titleSize += titleDirection * 0.5;
+        titleCount++;
+        if (titleCount > 10) {
+          titleDirection *= -1;
+          titleCount = 0;
+        }
+
+        // --- HEAD (moves diagonally, changes color, grows/shrinks)
+        fill(headColor);
+        ellipse(headX, headY, headSize);
+        headX += headXSpeed;
+        headY += headYSpeed;
+
+        // bounce & color change
+        if (headX > width - headSize / 2 || headX < headSize / 2) {
+          headXSpeed *= -1;
+          headColor = color(random(255), random(255), random(255));
+        }
+        if (headY > height - headSize / 2 || headY < headSize / 2) {
+          headYSpeed *= -1;
+          headColor = color(random(255), random(255), random(255));
+        }
+
+        // head grows/shrinks
+        if (headGrow) {
+          headSize += 0.5;
+          if (headSize > 130) headGrow = false;
+        } else {
+          headSize -= 0.5;
+          if (headSize < 90) headGrow = true;
+        }
+
+        // --- RECTANGLE (moves left and right)
+        fill(rectColor);
+        rect(rectX, rectY, 80, 40);
+        rectX += rectSpeed;
+        if (rectX > width - 80 || rectX < 0) {
+          rectSpeed *= -1;
+          rectColor = color(random(255), random(255), random(255));
+        }
+
+        // --- CIRCLE (moves up and down)
+        fill(circleColor);
+        ellipse(circleX, circleY, 50);
+        circleY += circleSpeed;
+        if (circleY > height - 25 || circleY < 25) {
+          circleSpeed *= -1;
+          circleColor = color(random(255), random(255), random(255));
+        }
+
+        // --- NAME
+        fill(0);
+        textSize(22);
+        text("Aundrea Johnson", 300, 580);
+      }
+    </script>
+  </head>
+</html>
