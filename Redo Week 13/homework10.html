@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script>
+      // Head (moves diagonally)
+      let headX = 250;
+      let headY = 200;
+      let headSize = 100;
+      let headGrow = true;
+      let headColor;
+      let headXSpeed = 2;
+      let headYSpeed = 1.5;
+
+      // Rectangle (moves left and right)
+      let rectX = 100;
+      let rectY = 400;
+      let rectSpeed = 3;
+      let rectColor;
+
+      // Circle (moves up and down)
+      let circleX = 400;
+      let circleY = 300;
+      let circleSpeed = 2;
+      let circleColor;
+
+      // --- NEW SHAPE 1 (Triangle: moves left → right)
+      let triX = 50;
+      let triY = 500;
+      let triSpeed = 2;
+
+      // --- NEW SHAPE 2 (Square: moves up → down)
+      let squareX = 50;
+      let squareY = 100;
+      let squareSpeed = 2;
+
+      // Title animation
+      let titleSize = 24;
+      let titleDirection = 1;
+      let titleCount = 0;
+
+      function setup() {
+        createCanvas(500, 600);
+        headColor = color(255, 200, 200);
+        rectColor = color(150, 200, 255);
+        circleColor = color(200, 255, 150);
+      }
+
+      function draw() {
+        background(220);
+
+        // --- TITLE
+        fill(0);
+        textSize(titleSize);
+        text("Self Portrait", 10, 40);
+        titleSize += titleDirection * 0.5;
+        titleCount++;
+        if (titleCount > 10) {
+          titleDirection *= -1;
+          titleCount = 0;
+        }
+
+        // --- HEAD
+        fill(headColor);
+        ellipse(headX, headY, headSize);
+        headX += headXSpeed;
+        headY += headYSpeed;
+
+        if (headX > width - headSize / 2 || headX < headSize / 2) {
+          headXSpeed *= -1;
+        }
+        if (headY > height - headSize / 2 || headY < headSize / 2) {
+          headYSpeed *= -1;
+        }
+
+        if (headGrow) {
+          headSize += 0.5;
+          if (headSize > 130) headGrow = false;
+        } else {
+          headSize -= 0.5;
+          if (headSize < 90) headGrow = true;
+        }
+
+        // --- RECTANGLE
+        fill(rectColor);
+        rect(rectX, rectY, 80, 40);
+        rectX += rectSpeed;
+        if (rectX > width - 80 || rectX < 0) {
+          rectSpeed *= -1;
+        }
+
+        // --- CIRCLE
+        fill(circleColor);
+        ellipse(circleX, circleY, 50);
+        circleY += circleSpeed;
+        if (circleY > height - 25 || circleY < 25) {
+          circleSpeed *= -1;
+        }
+
+        // --- TRIANGLE (NEW)
+        fill(255, 180, 100);
+        triangle(triX, triY, triX + 30, triY - 40, triX + 60, triY);
+        triX += triSpeed;
+        if (triX > width - 60 || triX < 0) {
+          triSpeed *= -1;
+        }
+
+        // --- SQUARE (NEW)
+        fill(180, 255, 200);
+        square(squareX, squareY, 40);
+        squareY += squareSpeed;
+        if (squareY > height - 40 || squareY < 0) {
+          squareSpeed *= -1;
+        }
+
+        // --- NAME
+        fill(0);
+        textSize(22);
+        text("Aundrea Johnson", 300, 580);
+      }
+    </script>
+  </head>
+</html>
