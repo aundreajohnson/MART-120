@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple Bubble Artwork</title>
+
+    <!-- p5.js CDN so you don't need extra files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+
+  <body>
+    <script>
+      // Simple Floating Bubble Artwork (Beginner Friendly)
+
+      let bubbles = [];
+
+      function setup() {
+        createCanvas(600, 400);
+
+        // make some bubbles
+        for (let i = 0; i < 30; i++) {
+          bubbles.push(new Bubble(random(width), random(height), random(20, 60)));
+        }
+      }
+
+      function draw() {
+        background(20, 30, 40);
+
+        // draw and move each bubble
+        for (let b of bubbles) {
+          b.move();
+          b.show();
+        }
+
+        // small note
+        fill(255);
+        textSize(14);
+        text("Move your mouse — bubbles float toward it", 10, height - 10);
+      }
+
+      // simple class
+      class Bubble {
+        constructor(x, y, s) {
+          this.x = x;
+          this.y = y;
+          this.size = s;
+          this.c = color(
+            random(100, 255),
+            random(100, 255),
+            random(100, 255),
+            150
+          );
+        }
+
+        move() {
+          // soft movement
+          this.x += random(-1, 1);
+          this.y += random(-1, 1);
+
+          // gentle pull toward mouse when pressed
+          if (mouseIsPressed) {
+            this.x += (mouseX - this.x) * 0.01;
+            this.y += (mouseY - this.y) * 0.01;
+          }
+        }
+
+        show() {
+          noStroke();
+          fill(this.c);
+          ellipse(this.x, this.y, this.size);
+        }
+      }
+    </script>
+  </body>
+</html>
